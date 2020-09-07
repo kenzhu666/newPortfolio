@@ -1,0 +1,206 @@
+@import 'config';
+@import 'menu';
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    @include background;
+    margin:0;
+    background:$primary-color;
+    color:white;
+    line-height: 1.5;
+}
+
+
+a{
+    text-decoration: none;
+    color:white;
+}
+
+h1,h2,h3{
+    margin:0;
+    font-weight: 400;
+    &.lg-heading{
+        font-size: 6rem;
+        span{
+            color:$secondary-color;
+        }
+    }
+    &.sm-heading{
+        font-size: 2rem;
+        padding-top:1rem;
+        background:rgba(lighten($primary-color,2), 0.3);
+    }
+}
+
+// 1. home page
+
+header{
+    position:fixed;
+    z-index: 2;
+    width:100%;
+}
+
+main{
+    padding:4rem;
+    min-height: calc(100vh - 60px);
+    &#home{
+        overflow: hidden;
+        h1{
+            margin-top: 20vh;
+        }
+    }
+
+    button{
+        margin-top:2rem;
+        padding:1rem;
+        border:none;
+        border-radius:1rem;
+        font-size:1rem;
+        background:white;
+        color:$primary-color;
+        &:hover{
+            @include easeOut;
+            background: $primary-color;
+            color:white;
+            font-weight:600;
+            transform:scale(1.1);
+        }
+    }
+}
+
+
+// 2. About page
+.about-info{
+    margin-top:3rem;
+    display:grid;
+    grid-template-areas: 
+    'portrait-img bio bio'
+    'experience1 experience2 experience3';
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 2rem;
+
+    .portrait-img {
+        width:300px;
+        height:300px;
+        grid-area:portrait-img;
+        margin:auto;
+        border-radius:50%;
+        border: 3px solid $secondary-color; 
+        display: inline-block;       
+    }
+
+    .bio{
+        grid-area:bio;
+        font-size:1.5rem;
+        h3{
+            color:$secondary-color;
+        }
+    }
+    .job-1{
+
+        grid-area:experience1;
+    }
+    .job-2{
+        grid-area:experience2;
+    }
+    .job-3{
+        grid-area:experience3;
+    }
+
+    .job{
+        background:lighten($primary-color,5);
+
+        padding:2rem;
+        border-bottom: 5px solid $secondary-color;
+    }
+}
+
+
+
+// 3. work page
+.projects{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap:1.5rem;
+
+    .img-container{
+        display:block;
+        overflow: hidden;  
+        img{
+                width: 100%;
+                @include easeOut;
+                &:hover{
+                    opacity: 0.5;
+                    transform:scale(1.2);
+                }
+        }
+    }
+    
+    .btn{
+        display:block;
+        padding:0.5rem 1rem;
+        border:0;
+        background:$primary-color;
+        margin-bottom:0.3rem;
+        &:hover{
+            background: $secondary-color;
+            border-color: $secondary-color;
+            color:white;
+            @include easeOut;
+        }
+    }
+
+    .btn-light{
+        @extend .btn;
+        background:lighten($primary-color, 50);
+        color:#333;
+    }
+
+    .btn-dark{
+        @extend .btn;
+        background:darken($primary-color, 50);
+        color:white;
+    }
+    }
+
+
+
+// contact
+.contact-list{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top:2rem;
+    div{
+        font-size:2rem;
+        border:3px solid white;
+        padding:1.5rem 2rem;
+        margin-bottom:3rem;
+        @include easeOut;
+        &:hover{
+            background:$secondary-color;
+            padding:0.5rem 1.5rem;
+            span{
+                color:white;
+            }
+        }
+        span{
+            color:$secondary-color;
+        }
+    }
+}
+
+footer{
+    height:60px;
+    text-align: center;
+    background: darken($primary-color, 10);
+    color:white;
+    padding:1rem;
+}
+
+
+@import 'mobile';
